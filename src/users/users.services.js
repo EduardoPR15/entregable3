@@ -1,5 +1,11 @@
+const usersControllers = require('./users.controllers')
 
-const getAllUsers = () => {
+
+const getAllUsers = (req,res) => {
+    usersControllers.findAllUsers()
+    .then( () => {
+        console.log(object);
+    })
 
 }
 
