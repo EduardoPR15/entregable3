@@ -51,7 +51,7 @@ const patchUser = (req,res) => {
         if(data){
         res.status(200).json({message: 'user updated at' + id})   
         }else{
-            res.status(404).json({message: 'invalid  id'})
+            res.status(404).json({message: 'invalid  ID'})
 
         }
 
@@ -65,7 +65,26 @@ const patchUser = (req,res) => {
 
 const deleteUser = (req,res) => {
     const id = req.params.id
-    usersControllers.deleteUser()
+    usersControllers.deleteUser(id)
+    .then( data => {
+        if(data){
+          res.status(204).json({message: 'deleted succesfully'})   
+        }else{
+            res.status(404).json({message: 'invalid ID'})  
+        }
+
+       
+    })
+    .catch(err =>{
+        res.status(400).json({message: err.message})
+    })
 }
 
 
+module.exports ={
+    getAllUsers,
+    getUserById,
+    patchUser,
+    deleteUser,
+    postUser
+}
